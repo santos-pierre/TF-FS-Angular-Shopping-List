@@ -1,0 +1,10 @@
+<ul class="max-w-3xl mx-auto mt-10 space-y-5">
+  <h4 *ngIf="articles.length === 0" class="text-lg text-center text-gray-600">List Empty</h4>
+  <app-shopping-item
+    *ngFor="let article of articles"
+    [article]="article"
+    (onAddQtyItem)="addQty($event)"
+    (onRemoveQtyItem)="removeQty($event)"
+    (onDeleteItem)="deleteItem($event)"
+  ></app-shopping-item>
+</ul>

@@ -1,27 +1,40 @@
 # ShoppingList
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.6.
+Liste de shopping en Angular
 
-## Development server
+### Matière abordé
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- @Input()/ @Output() : Communication entre composant
+- Validation formulaire
+- Utilisation de service
+- Directives \*ngFor/\*ngIF/\*ngClass
 
-## Code scaffolding
+### Librairie utilisé
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- [TailwindCSS](https://tailwindcss.com/) : Framework CSS
+- [NanoID](https://www.npmjs.com/package/nanoid) : Générateur d'id unique
 
-## Build
+### Point supplémentaire
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Utilisation d'event natif, keydown pour effectuer une action lorsque l'utilisateur appuye sur enter
 
-## Running unit tests
+```html
+<div>
+  <!--  -->
+  <input
+    type="text"
+    class="block w-64 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+    [formControl]="articleNameControl"
+    (keydown)="handleArticleNameChange($event)"
+  />
+  <!--  -->
+</div>
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```ts
+  handleArticleNameChange(event: KeyboardEvent) {
+    if (event.key === 'Enter' && this.articleNameControl.value !== null && this.articleNameControl.valid) {
+      this.addArticle();
+    }
+  }
+```
