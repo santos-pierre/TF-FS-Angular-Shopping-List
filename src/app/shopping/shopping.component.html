@@ -2,14 +2,14 @@
   <div>
     <input
       type="text"
-      class="block w-64 rounded-md shadow-sm sm:text-sm"
+      class="block w-64 rounded-md shadow-smz sm:text-sm"
       [ngClass]="{
         'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500': !(
-          articleNameControl.getError('required') &&
+          articleNameControl.hasError('required') &&
           (articleNameControl.touched || articleNameControl.dirty)
         ),
         'border-red-300 focus:border-red-500 focus:ring-red-500':
-          articleNameControl.getError('required') && (articleNameControl.touched || articleNameControl.dirty)
+          articleNameControl.hasError('required') && (articleNameControl.touched || articleNameControl.dirty)
       }"
       [formControl]="articleNameControl"
       (keydown)="handleArticleNameChange($event)"
@@ -17,7 +17,7 @@
 
     <p
       *ngIf="
-        articleNameControl.getError('required') && (articleNameControl.touched || articleNameControl.dirty)
+        articleNameControl.hasError('required') && (articleNameControl.touched || articleNameControl.dirty)
       "
       class="mt-2 text-sm text-red-600"
       id="email-error"
